@@ -86,6 +86,7 @@ w('beforedeactivate');
 w('focusin');
 w('focusout');
 w('stop');
+w('readystatechange');
 
 document.write('<h2>Unexistent (most likely) events:</h2>');
 
