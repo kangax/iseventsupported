@@ -96,3 +96,10 @@ w('foobarbaz');
 document.write('<h2>Unexistent in Opera <=10a</h2>');
 
 w('contextmenu');
+
+document.write('<h2>iPhone touch events</h2>');
+
+w('touchstart');
+w('touchend');
+w('touchmove');
+w('touchcancel');
