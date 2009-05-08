@@ -21,7 +21,7 @@ var isEventSupported = (function(){
     // When using `setAttribute`, IE skips "unload", WebKit skips "unload" and "resize"
     // `in` "catches" those
     var isSupported = (eventName in el);
-    if (!isSupported) {
+    if (!isSupported && el.setAttribute) {
       el.setAttribute(eventName, 'return;');
       isSupported = typeof el[eventName] == 'function';
     }

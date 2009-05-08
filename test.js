@@ -27,7 +27,7 @@ w('keyup');
 document.write('<h2>HTML events</h2>');
 
 w('load');
-w('unload', window);
+w('unload', typeof window.onunload != 'undefined' ? window : void 0 );
 w('abort');
 w('error');
 
