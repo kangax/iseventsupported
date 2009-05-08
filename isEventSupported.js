@@ -1,3 +1,9 @@
+/**
+ * @method isEventSupported
+ * @param {String} eventName
+ * @param {HTMLElement} element optional
+ * @return {Boolean} true if event is supported
+ */
 var isEventSupported = (function(){
   var TAGNAMES = {
     'select':'input','change':'input',

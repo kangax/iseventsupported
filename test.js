@@ -1,6 +1,6 @@
-function w(name) {
+function w(name, element) {
   document.write(name + ': ' + (
-    isEventSupported(name) 
+    isEventSupported(name, element)
       ? '<span style="background-color:green;color:white;">true</span>' 
       : '<span style="background-color:red;color:white;">false</span>'
     ) + '<br>');
@@ -27,7 +27,7 @@ w('keyup');
 document.write('<h2>HTML events</h2>');
 
 w('load');
-w('unload');
+w('unload', window);
 w('abort');
 w('error');
 
@@ -85,8 +85,10 @@ w('deactivate');
 w('beforedeactivate');
 w('focusin');
 w('focusout');
-w('stop');
+w('stop', document);
 w('readystatechange');
+w('beforeprint', document.body);
+w('afterprint', document.body);
 
 document.write('<h2>Unexistent (most likely) events:</h2>');
 
@@ -97,9 +99,15 @@ document.write('<h2>Unexistent in Opera <=10a</h2>');
 
 w('contextmenu');
 
-document.write('<h2>iPhone touch events</h2>');
+document.write('<h2>iPhone touch/gesture events</h2>');
 
 w('touchstart');
 w('touchend');
 w('touchmove');
 w('touchcancel');
+
+document.write('<br>');
+
+w('gesturestart');
+w('gesturechange');
+w('gestureend');
