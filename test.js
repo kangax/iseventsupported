@@ -89,6 +89,7 @@ w('stop', document);
 w('readystatechange');
 w('beforeprint', document.body);
 w('afterprint', document.body);
+w('beforeunload', typeof window.onbeforeunload != 'undefined' ? window : void 0 );
 
 document.write('<h2>Unexistent (most likely) events:</h2>');
 
@@ -111,3 +112,9 @@ document.write('<br>');
 w('gesturestart');
 w('gesturechange');
 w('gestureend');
+
+document.write('<h2>HTML5 events</h2>');
+
+w('hashchange', document.body);
+w('online', document.body);
+w('offline', document.body);
