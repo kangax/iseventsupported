@@ -118,3 +118,4 @@ document.write('<h2>HTML5 events</h2>');
 w('hashchange', document.body);
 w('online', document.body);
 w('offline', document.body);
+w('message', typeof window.onmessage != 'undefined' ? window : void 0 );
