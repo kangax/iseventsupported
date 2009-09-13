@@ -45,7 +45,7 @@ var isEventSupported = (function(){
       isSupported = typeof element[eventName] == 'function';
       
       // if property was created, "remove it" (by setting value to `undefined`)
-      if (element[eventName] != 'undefined') {
+      if (typeof element[eventName] != 'undefined') {
         element[eventName] = void 0;
       }
       element.removeAttribute(eventName);
