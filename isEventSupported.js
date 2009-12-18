@@ -23,6 +23,45 @@ var isEventSupported = (function(){
     'select':'input','change':'input',
     'submit':'form','reset':'form',
     'error':'img','load':'img','abort':'img'
+  }
+  
+  function isEventSupported(eventName, element) {
+
+    element = element || document.createElement(TAGNAMES[eventName] || 'div');
+    eventName = 'on' + eventName;
+    
+    // When using `setAttribute`, IE skips "unload", WebKit skips "unload" and "resize", whereas `in` "catches" those
+    var isSupported = (eventName in element);
+    
+    if (!isSupported) {
+      // if it has no `setAttribute` (i.e. doesn't implement Node interface), try generic element
+      if (!element.setAttribute) {
+        element = document.createElement('div');
+      }
+      if (element.setAttribute && element.removeAttribute) {
+        element.setAttribute(eventName, '');
+        isSupported = typeof element[eventName] == 'function';
+
+        // if property was created, "remove it" (by setting value to `undefined`)
+        if (typeof element[eventName] != 'undefined') {
+          element[eventName] = void 0;
+        }
+        element.removeAttribute(eventName);
+      }
+    }
+    
+    element = null;
+    return isSupported;
+  }
+  return isEventSupported;
+})();
+
+var isEventSupportedWithCache = (function(){
+  
+  var TAGNAMES = {
+    'select':'input','change':'input',
+    'submit':'form','reset':'form',
+    'error':'img','load':'img','abort':'img'
   }, 
   cache = { };
   
@@ -40,15 +79,21 @@ var isEventSupported = (function(){
     // When using `setAttribute`, IE skips "unload", WebKit skips "unload" and "resize", whereas `in` "catches" those
     var isSupported = (eventName in element);
     
-    if (!isSupported && element.setAttribute && element.removeAttribute) {
-      element.setAttribute(eventName, 'return;');
-      isSupported = typeof element[eventName] == 'function';
-      
-      // if property was created, "remove it" (by setting value to `undefined`)
-      if (typeof element[eventName] != 'undefined') {
-        element[eventName] = void 0;
+    if (!isSupported) {
+      // if it has no `setAttribute` (i.e. doesn't implement Node interface), try generic element
+      if (!element.setAttribute) {
+        element = document.createElement('div');
       }
-      element.removeAttribute(eventName);
+      if (element.setAttribute && element.removeAttribute) {
+        element.setAttribute(eventName, '');
+        isSupported = typeof element[eventName] == 'function';
+
+        // if property was created, "remove it" (by setting value to `undefined`)
+        if (typeof element[eventName] != 'undefined') {
+          element[eventName] = void 0;
+        }
+        element.removeAttribute(eventName);
+      }
     }
     
     element = null;

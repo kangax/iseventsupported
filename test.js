@@ -27,13 +27,13 @@ w('keyup');
 document.write('<h2>HTML events</h2>');
 
 w('load');
-w('unload', typeof window.onunload != 'undefined' ? window : void 0 );
+w('unload', window);
 w('abort');
 w('error');
 
 document.write('<h2>View events</h2>');
 
-w('resize');
+w('resize', window);
 w('scroll');
 
 document.write('<h2>Form events:</h2>');
@@ -89,7 +89,7 @@ w('stop', document);
 w('readystatechange');
 w('beforeprint', document.body);
 w('afterprint', document.body);
-w('beforeunload', typeof window.onbeforeunload != 'undefined' ? window : void 0 );
+w('beforeunload', window);
 
 document.write('<h2>Unexistent (most likely) events:</h2>');
 
@@ -118,4 +118,17 @@ document.write('<h2>HTML5 events</h2>');
 w('hashchange', document.body);
 w('online', document.body);
 w('offline', document.body);
-w('message', typeof window.onmessage != 'undefined' ? window : void 0 );
+w('message', window);
+w('undo', document.body);
+w('redo', document.body);
+w('storage', window);
+w('popstate', window);
+
+w('canplay', document.createElement('video'));
+w('seeking', document.createElement('video'));
+w('seekend', document.createElement('video'));
+
+document.write('<h2>Proprietary</h2>');
+
+w('pageshow', window);
+w('pagehide', window);
