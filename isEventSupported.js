@@ -17,20 +17,19 @@
  * `isEventSupported` sets such property to `undefined` value, but can not fully remove it
  *
  */
-var isEventSupported = (function(){
+var isEventSupported = (function(undef) {
   
   var TAGNAMES = {
     'select':'input','change':'input',
     'submit':'form','reset':'form',
     'error':'img','load':'img','abort':'img'
-  }
+  };
   
   function isEventSupported(eventName, element) {
 
     element = element || document.createElement(TAGNAMES[eventName] || 'div');
     eventName = 'on' + eventName;
     
-    // When using `setAttribute`, IE skips "unload", WebKit skips "unload" and "resize", whereas `in` "catches" those
     var isSupported = (eventName in element);
     
     if (!isSupported) {
@@ -44,7 +43,7 @@ var isEventSupported = (function(){
 
         // if property was created, "remove it" (by setting value to `undefined`)
         if (typeof element[eventName] != 'undefined') {
-          element[eventName] = void 0;
+          element[eventName] = undef;
         }
         element.removeAttribute(eventName);
       }
@@ -56,7 +55,7 @@ var isEventSupported = (function(){
   return isEventSupported;
 })();
 
-var isEventSupportedWithCache = (function(){
+var isEventSupportedWithCache = (function(undef) {
   
   var TAGNAMES = {
     'select':'input','change':'input',
@@ -90,7 +89,7 @@ var isEventSupportedWithCache = (function(){
 
         // if property was created, "remove it" (by setting value to `undefined`)
         if (typeof element[eventName] != 'undefined') {
-          element[eventName] = void 0;
+          element[eventName] = undef;
         }
         element.removeAttribute(eventName);
       }
