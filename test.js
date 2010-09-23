@@ -132,3 +132,6 @@ document.write('<h2>Proprietary</h2>');
 
 w('pageshow', window);
 w('pagehide', window);
+
+w('onbeforescriptexecute', document);
+w('onafterscriptexecute', document);
