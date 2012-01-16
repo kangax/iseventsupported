@@ -17,6 +17,7 @@ w('mouseup');
 w('mouseover');
 w('mousemove');
 w('mouseout');
+w('mousewheel');
 
 document.write('<h2>Key events:</h2>');
 
@@ -34,6 +35,7 @@ w('error');
 document.write('<h2>View events</h2>');
 
 w('resize', window);
+w('orientationchange', window);
 w('scroll');
 
 document.write('<h2>Form events:</h2>');
